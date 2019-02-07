@@ -1,6 +1,6 @@
 load _test_base
 
-@test 'int succeesds' {
+@test 'int succeeds' {
   for input in ${integer_inputs[@]}; do
     run is int:the $input
     [ "$status" -eq 0 ]

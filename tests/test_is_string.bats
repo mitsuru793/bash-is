@@ -1,6 +1,6 @@
 load _test_base
 
-@test 'str succeesds' {
+@test 'str succeeds' {
   for input in ${string_inputs[@]}; do
     run is $input str
     [ "$status" -eq 0 ]
