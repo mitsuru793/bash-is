@@ -1,12 +1,13 @@
 # shellcheck disable=SC2046,SC2086,SC2003,SC2039
 
 _is_interger() {
-  local condition=$1
+  local target=$1
+  local condition=${2:-}
   shift
 
   case $condition in
-    the)
-      expr "$1" + 1 >&/dev/null
+    "")
+      expr "$target" + 1 >&/dev/null
       return $(test $? -lt 2)
       ;;
     *)
@@ -15,12 +16,13 @@ _is_interger() {
 }
 
 _is_string() {
-  local condition=$1
+  local target=$1
+  local condition=${2:-}
   shift
 
   case $condition in
-    the)
-      return $(! _is_interger the $1)
+    "")
+      return $(! _is_interger $target)
       ;;
     *)
       echo "invalid condition: $condition"
@@ -28,16 +30,16 @@ _is_string() {
 }
 
 is() {
-  local type=${1%%:*}
-  local condition=${1#*:}
-  local args=(${@:2})
+  local target=$1
+  local type=($2)
+  local args=(${@:3})
 
   case $type in
     integer | int)
-      return $(_is_interger "$condition" "${args[@]}")
+      return $(_is_interger "$target" "${args[@]}")
       ;;
     string | str)
-      return $(_is_string "$condition" "${args[@]}")
+      return $(_is_string "$target" "${args[@]}")
       ;;
     *)
       echo "Invalid type: $type"
