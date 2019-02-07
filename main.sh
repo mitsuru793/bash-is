@@ -11,7 +11,7 @@ _is_interger() {
       return $(test $? -lt 2)
       ;;
     *)
-      echo "invalid condition: $condition"
+      echo "Invalid condition: $condition"
   esac
 }
 
@@ -25,7 +25,7 @@ _is_string() {
       return $(! _is_interger $target)
       ;;
     *)
-      echo "invalid condition: $condition"
+      echo "Invalid condition: $condition"
   esac
 }
 
