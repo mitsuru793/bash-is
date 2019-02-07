@@ -1,13 +1,13 @@
 load _test_base
 
-@test 'str:the succeesds' {
+@test 'string:the succeesds' {
   for input in ${string_inputs[@]}; do
     run is str:the $input
     [ "$status" -eq 0 ]
   done
 }
 
-@test 'int:the fails' {
+@test 'string:the fails' {
   for input in ${integer_inputs[@]}; do
     run is str:the $input
     [ "$status" -eq 1 ]
